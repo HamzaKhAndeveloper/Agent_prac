@@ -3,6 +3,7 @@ from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 from pydantic import BaseModel
 import os
+from executer import executer
 import json
 from dotenv import load_dotenv
 load_dotenv()
@@ -40,7 +41,9 @@ Format:
 }"""
 )
 
-def main(q):
-    r = agent.invoke({"messages":[{"role":"user","content":q}]})
-    print(r['structured_response'])
-    return r['structured_response']
+
+r = agent.invoke({"messages":[{"role":"user","content":"i want to become a youtuber"}]})
+print(r['structured_response'])
+execute = executer(r['structured_response'])
+print("execute output:",execute)
+    
